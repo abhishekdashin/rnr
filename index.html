@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Excellence Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals with Teal Accent -->
+    <!-- Application Structure Plan: The application is structured as a user journey, guiding the user from the 'Why' (Core Principles) to the 'How' (The Showcase Journey) and 'What's Next' (Action Items). A central, interactive step-by-step diagram allows users to click on each stage (Submit, Review, Showcase, Recognize) to reveal detailed information. This non-linear, exploratory approach was chosen over a simple document layout to make the process feel more accessible and engaging, encouraging team members to participate by breaking down the information into digestible, user-triggered sections. -->
+    <!-- Visualization & Content Choices: The core of the application is an interactive process flow diagram built with HTML/CSS and JS. Goal: Organize/Change. Method: Clickable step buttons that reveal corresponding content sections. Interaction: User clicks a step, the view smoothly scrolls to the relevant details. Justification: This makes the dense process information manageable and user-driven. Other information like Principles and Rewards are presented in visually appealing cards/lists. Goal: Inform. Method: Styled HTML lists/grids. Justification: Enhances scannability and visual appeal over plain text. No charts are used as the source material is qualitative. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4; /* Warm Neutral: Stone 100 */
+            color: #374151; /* Cool Gray 700 */
+        }
+        .accent-color {
+            background-color: #0D9488; /* Teal 600 */
+        }
+        .accent-text {
+            color: #0D9488; /* Teal 600 */
+        }
+        .accent-border {
+            border-color: #0D9488; /* Teal 600 */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #14B8A6; /* Teal 500 */
+        }
+        .step-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .step-item.active {
+            background-color: #0D9488;
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .step-item.active .step-circle {
+            background-color: white;
+            color: #0D9488;
+        }
+        .content-panel {
+            display: none;
+            transition: all 0.5s ease-in-out;
+        }
+        .content-panel.active {
+            display: block;
+        }
+        .step-line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #D1D5DB;
+        }
+         @media (max-width: 768px) {
+            .step-line {
+                display: none;
+            }
+            .steps-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold accent-text">Platform Excellence Showcase</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#principles" class="nav-link font-semibold text-gray-600">Principles</a>
+                <a href="#journey" class="nav-link font-semibold text-gray-600">The Journey</a>
+                <a href="#rewards" class="nav-link font-semibold text-gray-600">Rewards</a>
+                <a href="#next-steps" class="nav-link font-semibold text-gray-600">Next Steps</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-teal-600 hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#principles" class="block py-2 nav-link font-semibold text-gray-600">Principles</a>
+            <a href="#journey" class="block py-2 nav-link font-semibold text-gray-600">The Journey</a>
+            <a href="#rewards" class="block py-2 nav-link font-semibold text-gray-600">Rewards</a>
+            <a href="#next-steps" class="block py-2 nav-link font-semibold text-gray-600">Next Steps</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">A Framework for Recognition & Celebration</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Welcome to the Platform Excellence Showcase, a new initiative designed to highlight the incredible work our team does. This framework provides a clear and transparent way to share, review, and celebrate our collective achievements.</p>
+        </section>
+
+        <section id="principles" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Guiding Principles</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-text">🎯</div>
+                    <h4 class="text-xl font-bold mb-2">Focus on Impact</h4>
+                    <p class="text-gray-600">Highlighting work that has made a tangible, positive impact.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-text">🔍</div>
+                    <h4 class="text-xl font-bold mb-2">Transparency</h4>
+                    <p class="text-gray-600">An open and clear process accessible to all team members.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-text">🎉</div>
+                    <h4 class="text-xl font-bold mb-2">Recognition</h4>
+                    <p class="text-gray-600">Celebrating the valuable contributions of our team.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-text">📈</div>
+                    <h4 class="text-xl font-bold mb-2">Continuous Improvement</h4>
+                    <p class="text-gray-600">Regularly reviewing and improving the framework itself.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-text">🤝</div>
+                    <h4 class="text-xl font-bold mb-2">Shared Ownership</h4>
+                    <p class="text-gray-600">Distributing responsibilities to ensure sustainability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-800">The Showcase Journey</h3>
+                <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">Follow the journey of a submission from an initial idea to a celebrated success. Click each step to learn more about that part of the process.</p>
+            </div>
+
+            <div class="flex items-center justify-center steps-container mb-12">
+                <div id="step-submit" class="step-item flex-1 p-4 rounded-lg bg-white shadow-md text-center active">
+                    <div class="step-circle w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center bg-teal-600 text-white font-bold text-lg">1</div>
+                    <h4 class="font-semibold">Submit Work</h4>
+                </div>
+                <div class="step-line"></div>
+                <div id="step-review" class="step-item flex-1 p-4 rounded-lg bg-white shadow-md text-center">
+                    <div class="step-circle w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center bg-gray-300 text-gray-600 font-bold text-lg">2</div>
+                    <h4 class="font-semibold">Review & Feedback</h4>
+                </div>
+                <div class="step-line"></div>
+                <div id="step-present" class="step-item flex-1 p-4 rounded-lg bg-white shadow-md text-center">
+                     <div class="step-circle w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center bg-gray-300 text-gray-600 font-bold text-lg">3</div>
+                    <h4 class="font-semibold">Leadership Showcase</h4>
+                </div>
+                <div class="step-line"></div>
+                <div id="step-recognize" class="step-item flex-1 p-4 rounded-lg bg-white shadow-md text-center">
+                    <div class="step-circle w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center bg-gray-300 text-gray-600 font-bold text-lg">4</div>
+                    <h4 class="font-semibold">Celebrate & Recognize</h4>
+                </div>
+            </div>
+
+            <div id="journey-content" class="bg-white p-8 rounded-lg shadow-lg min-h-[300px]">
+                <div id="content-submit" class="content-panel active">
+                    <h4 class="text-2xl font-bold mb-4 accent-text">Step 1: Submit Your Work</h4>
+                    <p class="text-gray-600 mb-6">This is your opportunity to share work you're proud of. We've streamlined the process to make it as simple as possible. Submissions should focus on completed work, effective problem-solving, and process improvements that have made a difference.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">What to Include:</h5>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Project/Task Title & Team Members</li>
+                                <li>Brief Description & Problem Solved</li>
+                                <li>Quantifiable Impact and Outcomes</li>
+                                <li>"Before and After" for Process Improvements</li>
+                                <li>Supporting Materials (Links to docs, demos)</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h5 class="font-bold text-lg mb-2">How to Submit:</h5>
+                            <p class="text-gray-600 mb-2">Use the standardized template (form, Confluence page, etc.) and submit it through our dedicated channel (e.g., a specific Slack channel or shared drive).</p>
+                             <h5 class="font-bold text-lg mb-2 mt-4">What is "Good Work"?</h5>
+                             <p class="text-gray-600">Think about work that reduced latency, cut costs, improved a workflow, or solved a tricky problem, even if it was escalated. If it made a positive impact, we want to hear about it!</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-review" class="content-panel">
+                    <h4 class="text-2xl font-bold mb-4 accent-text">Step 2: Review & Feedback</h4>
+                     <p class="text-gray-600 mb-6">Every submission is carefully reviewed to understand its contributions. The goal is to provide constructive feedback to all submitters and identify work that has had a significant impact. Reviews will be conducted regularly to ensure timeliness.</p>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Review Team:</h5>
+                            <p class="text-gray-600">Initially, Abhishek and Shabab will conduct reviews. We plan to rotate in other team members to foster shared ownership and diverse perspectives.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Review Criteria:</h5>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><b>Impact:</b> Contribution to team/organization goals.</li>
+                                <li><b>Quality:</b> Technical excellence and thoroughness.</li>
+                                <li><b>Efficiency:</b> Improvements in processes or resources.</li>
+                                <li><b>Problem-Solving:</b> Effectiveness of the solution.</li>
+                                <li><b>Clarity:</b> Quality of the submission itself.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-present" class="content-panel">
+                    <h4 class="text-2xl font-bold mb-4 accent-text">Step 3: Leadership Showcase</h4>
+                    <p class="text-gray-600 mb-6">The most impactful work selected during the review process will be presented to the leadership group each quarter. This is a fantastic platform to gain visibility and showcase the value our team delivers to the entire organization.</p>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Presentation Format:</h5>
+                            <p class="text-gray-600">Presenters will receive a template to ensure presentations are consistent, clear, and impactful. Key elements include the problem statement, solution, key results, and lessons learned.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Presentation Coaching:</h5>
+                            <p class="text-gray-600">We want you to succeed. Presenters will have the opportunity to rehearse and receive coaching and feedback before the main event to help build confidence and refine their message.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-recognize" class="content-panel">
+                    <h4 class="text-2xl font-bold mb-4 accent-text">Step 4: Celebrate & Recognize</h4>
+                    <p class="text-gray-600 mb-6">Recognition is at the heart of this framework. We believe in celebrating success publicly and providing opportunities that support professional growth. This is about acknowledging the hard work and ingenuity of our team members.</p>
+                    <p class="text-gray-600">See the "Rewards & Recognition" section below for a full list of how we celebrate excellence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rewards" class="mb-20">
+             <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Rewards & Recognition</h3>
+             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">📢 Public Acknowledgement</h4>
+                    <p class="text-gray-600">Recognition in leadership meetings and team-wide announcements.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">🏆 "Hall of Fame"</h4>
+                    <p class="text-gray-600">A permanent showcase of past winning submissions on Confluence.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">🌱 Skill Development</h4>
+                    <p class="text-gray-600">An opportunity to develop valuable presentation and communication skills.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">🌟 Increased Visibility</h4>
+                    <p class="text-gray-600">Showcase your work to a wider audience, including leadership.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">💡 Special Projects</h4>
+                    <p class="text-gray-600">Opportunities to work on special projects or explore new tech.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-lg mb-2 accent-text">🥳 Team Celebrations</h4>
+                    <p class="text-gray-600">Quarterly events to celebrate the achievements showcased.</p>
+                </div>
+             </div>
+        </section>
+        
+        <section id="next-steps" class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">What's Next? Action Items</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">To get this initiative off the ground, we will be focusing on the following key actions. Stay tuned for more updates as we roll out the Platform Excellence Showcase.</p>
+            <ol class="list-decimal list-inside space-y-4 max-w-xl mx-auto text-gray-700">
+                <li class="text-lg"><span class="font-semibold">Finalize Submission Guidelines:</span> Clearly define what is worthy of submission.</li>
+                <li class="text-lg"><span class="font-semibold">Establish the Process:</span> Set up the submission channel, review cadence, and presentation schedule.</li>
+                <li class="text-lg"><span class="font-semibold">Create Submission Template:</span> Develop the standardized form for submissions.</li>
+                <li class="text-lg"><span class="font-semibold">Communicate to the Team:</span> Announce the showcase and encourage everyone to participate!</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 Platform Team. Let's celebrate excellence together.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const steps = document.querySelectorAll('.step-item');
+            const panels = document.querySelectorAll('.content-panel');
+            const journeyContent = document.getElementById('journey-content');
+
+            function setActiveStep(stepId) {
+                steps.forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById(`step-${stepId}`).classList.add('active');
+
+                panels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                document.getElementById(`content-${stepId}`).classList.add('active');
+            }
+
+            steps.forEach(step => {
+                step.addEventListener('click', () => {
+                    const stepId = step.id.split('-')[1];
+                    setActiveStep(stepId);
+                    journeyContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
